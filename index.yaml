@@ -1,0 +1,21 @@
+apiVersion: v1
+entries:
+  debezium-connect:
+  - apiVersion: v1
+    created: "2021-11-04T12:40:43.113251681Z"
+    description: Kafka Connect service by Debezium
+    digest: eeaac44a30edd898000b70a1f4e8636d9a4587fb809f167df39d6980c562bd7d
+    home: http://debezium.io/docs/connectors/mysql/
+    keywords:
+    - mysql
+    - debezium
+    - kafka
+    - connector
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: debezium-connect
+    urls:
+    - https://github.com/mehrwertmacher/functions/releases/download/debezium-connect-0.1.1/debezium-connect-0.1.1.tgz
+    version: 0.1.1
+generated: "2021-11-04T12:40:43.113257581Z"
