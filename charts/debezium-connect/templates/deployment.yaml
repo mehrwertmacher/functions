@@ -9,11 +9,6 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: {{ template "fullname" . }}
-      app.kubernetes.io/component: connect
-      app.kubernetes.io/instance: {{ .Release.Name | quote }}
   template:
     metadata:
       labels:
