@@ -1,26 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name | quote }}
+  name: {{ include "fullname" . }}
   labels:
-    app: {{ .Release.Name | quote }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    app.kubernetes.io/name: {{ include "name" . }}
+    app.kubernetes.io/component: httpfs
+    { { - include "hdfs.labels" . | nindent 4 } }
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Release.Name | quote }}
+      app.kubernetes.io/name: {{ include "name" . }}
       app.kubernetes.io/component: connect
       app.kubernetes.io/instance: {{ .Release.Name | quote }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name | quote }}
+        app.kubernetes.io/name: {{ include "name" . }}
+        app.kubernetes.io/component: connect
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
     spec:
       containers:
-      - name: {{ template "fullname" . }}
+      - name: {{ include "fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
